@@ -3,41 +3,50 @@ from docx.shared import Inches
 from docx.enum.style import WD_STYLE_TYPE
 import io
 import datetime
-
+import os
+import openai
+from PIL import Image
+import requests
+from io import BytesIO
 import streamlit as st
 
-st.title("Automatisk geoteknisk rapport")
+with open("main.css") as f:
+    st.markdown("<style>{}</style>".format(f.read()), unsafe_allow_html=True)
+
+st.title("Demo av funksjonalitet for automatiserte rapporter")
 #--
-st.header("Dokumentinformasjon")
-c1, c2 = st.columns(2)
-with c1:
+st.header("Innhenting av data")
+st.subheader("Eksempel: OpenAI API")
+command = st.text_input("Lag et bilde med AI (skriv inn tekst)", value="three dogs playing chess, oil painting")
+openai.api_key = "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"
+engines = openai.Engine.list()
+number_of_images = 1
+image_response = openai.Image.create(prompt=command, n=number_of_images, size="512x512", response_format="url")
+for i in range(0, number_of_images):
+    url = image_response["data"][i]["url"]
+    response = requests.get(url)
+    img = Image.open(BytesIO(response.content))
+    st.image(img)
+#--
+st.subheader("Eksempel: Parametere")
+st.caption("Kan legges inn via nettsiden eller for eksempel hentes inn fra kart API / Sharepoint API")
+with st.form("Input"):
     forfatter = st.text_input("Forfatter", value="Ola Nordmann")
     oppdragsleder = st.text_input("Oppdragsleder", value="Kari Nordmann")
     oppdragsgiver = st.text_input("Oppdragsgiver", value = "Firma AS")
-with c2:
     oppdragsnummer = st.text_input("Oppdragsnummer", value = "635960-01")
     sted = st.text_input("Sted", value = "Trondheim")
-#--
-st.markdown("---")
-st.header("Innhenting av data")
-st.caption("Folium / Geopandas | ArcGIS")
-st.write("- Sted -> Oversiktskart")
-st.write("- Sted -> Terrengprofil(?)")
-st.write("- Sted -> Frost MET (klimadata) fra nærmeste værstasjon")
-st.write("- Sted -> NGU-kart: løsmasser, marin grense, NADAG, GRANADA, ...")
-
-#--
-st.markdown("---")
-st.header("Redigerbare avsnitt")
-report_text_1 = st.text_area("Avsnitt 1", value = """Viktige problemstillinger innen geoteknikk er vurdering av fundamenters bæreevne 
-(lastkapasitet) og deres setning under belastning, jordtrykk mot støtte- og kjellermurer, 
-stabilitet av veiskjæringer og naturlige skråninger, fundamentering av marine konstruksjoner og rørledninger. """)
-c1, c2 = st.columns(2)
-with c1:
+    #--
     depth_to_bedrock = st.number_input("Dybde til fjell [m]", value=5, step=1)
-with c2:
     loose_material = st.selectbox("Hva slags løsmasser?", options=["hav- og fjordavsetning", "elveavsetning", "breelvavsetning", "morene"])
-report_text_2 = f"""Dybde til fjell var {depth_to_bedrock} m. Løsmassene er kartlagt som {loose_material}."""
+    st.form_submit_button("Gi input")
+#--
+if depth_to_bedrock > 15:
+    setning_dybde_til_fjell = "Siden dybde til fjell > 15 m, må det gjøres supplerende grunnundersøkelser. "
+else:
+    setning_dybde_til_fjell = ""
+report_text_1 = f"""Det skal gjøres geoteknisk vurdering for {sted}. Dybde til fjell var {depth_to_bedrock} m. 
+{setning_dybde_til_fjell}Løsmassene er kartlagt som {loose_material}. Viktige problemstillinger innen geoteknikk er vurdering av fundamenters bæreevne (lastkapasitet) og deres setning under belastning, jordtrykk mot støtte- og kjellermurer, stabilitet av veiskjæringer og naturlige skråninger, fundamentering av marine konstruksjoner og rørledninger. """
 #--
 document = Document("Notatmal.docx")
 styles = document.styles
@@ -52,18 +61,18 @@ document.paragraphs[6].text = f"Tilgjenglighet: Åpen"
 
 document.paragraphs[7].text = f"Geoteknisk notat - {sted}"
 
-document.add_picture('trondheim.png', width=Inches(1.25))
 document.add_heading("Innledning", 1)
 document.add_paragraph(report_text_1)
-document.add_paragraph(report_text_2)
+
+img.save('img1.png')
+document.add_picture("img1.png")
 #--
 st.markdown("---")
-st.header("Last ned rapport")
 bio = io.BytesIO()
 document.save(bio)
 if document:
     st.download_button(
-        label="Last ned rapport i word-format",
+        label="Last ned rapport!",
         data=bio.getvalue(),
-        file_name="Report.docx",
+        file_name="Rapport.docx",
         mime="docx")
