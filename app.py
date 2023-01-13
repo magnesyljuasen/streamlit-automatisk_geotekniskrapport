@@ -4,7 +4,7 @@ from docx.enum.style import WD_STYLE_TYPE
 import io
 import datetime
 import os
-import openai
+#import openai
 from PIL import Image
 import requests
 from io import BytesIO
@@ -15,17 +15,17 @@ with open("main.css") as f:
 
 st.title("Demo av funksjonalitet for automatiserte rapporter")
 #--
-st.header("Innhenting av data")
-st.subheader("Eksempel: OpenAI API")
-command = st.text_input("Lag et bilde med AI (skriv inn tekst)", value="three dogs playing chess, oil painting")
-openai.api_key = "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"
-number_of_images = 1
-image_response = openai.Image.create(prompt=command, n=number_of_images, size="512x512", response_format="url")
-for i in range(0, number_of_images):
-    url = image_response["data"][i]["url"]
-    response = requests.get(url)
-    img = Image.open(BytesIO(response.content))
-    st.image(img)
+#st.header("Innhenting av data")
+#st.subheader("Eksempel: OpenAI API")
+#command = st.text_input("Lag et bilde med AI (skriv inn tekst)", value="three dogs playing chess, oil painting")
+#openai.api_key = "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"
+#number_of_images = 1
+#image_response = openai.Image.create(prompt=command, n=number_of_images, size="512x512", response_format="url")
+#for i in range(0, number_of_images):
+#    url = image_response["data"][i]["url"]
+#    response = requests.get(url)
+#    img = Image.open(BytesIO(response.content))
+#    st.image(img)
 #--
 st.subheader("Eksempel: Parametere")
 st.caption("Kan legges inn via nettsiden eller for eksempel hentes inn fra kart API / Sharepoint API")
@@ -63,8 +63,8 @@ document.paragraphs[7].text = f"Geoteknisk notat - {sted}"
 document.add_heading("Innledning", 1)
 document.add_paragraph(report_text_1)
 
-img.save('img1.png')
-document.add_picture("img1.png")
+#img.save('img1.png')
+document.add_picture("trondheim.PNG")
 #--
 st.markdown("---")
 bio = io.BytesIO()
