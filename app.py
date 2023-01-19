@@ -4,7 +4,7 @@ from docx.enum.style import WD_STYLE_TYPE
 import io
 import datetime
 import os
-import openai
+#import openai
 from PIL import Image
 import requests
 from io import BytesIO
