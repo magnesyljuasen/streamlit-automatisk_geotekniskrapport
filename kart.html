@@ -12,7 +12,7 @@
     <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
     <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_c347bcde4609c1ed2284dcb7674668a2 {
+                #map_86cb31976c537575a74a2abc4f304e86 {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -41,14 +41,14 @@
 <body>
     
     
-            <div class="folium-map" id="map_c347bcde4609c1ed2284dcb7674668a2" ></div>
+            <div class="folium-map" id="map_86cb31976c537575a74a2abc4f304e86" ></div>
         
 </body>
 <script>
     
     
-            var map_c347bcde4609c1ed2284dcb7674668a2 = L.map(
-                "map_c347bcde4609c1ed2284dcb7674668a2",
+            var map_86cb31976c537575a74a2abc4f304e86 = L.map(
+                "map_86cb31976c537575a74a2abc4f304e86",
                 {
                     center: [59.910155, 10.811134],
                     crs: L.CRS.EPSG3857,
@@ -65,103 +65,113 @@
                     layersControl: true,
                 }
             );
-            L.control.scale().addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            L.control.scale().addTo(map_86cb31976c537575a74a2abc4f304e86);
 
             
 
         
     
-            var tile_layer_37d911c9fcb32435310df31d63e10ddc = L.tileLayer(
+            var tile_layer_167ddead2a6c9deb2d606608ef3636f3 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 24, "maxZoom": 24, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
+    
+                tile_layer_167ddead2a6c9deb2d606608ef3636f3.addTo(map_86cb31976c537575a74a2abc4f304e86);
     
             L.Control.geocoder(
                 {"collapsed": true, "defaultMarkGeocode": true, "position": "topleft"}
             ).on('markgeocode', function(e) {
-                map_c347bcde4609c1ed2284dcb7674668a2.setView(e.geocode.center, 11);
-            }).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+                map_86cb31976c537575a74a2abc4f304e86.setView(e.geocode.center, 11);
+            }).addTo(map_86cb31976c537575a74a2abc4f304e86);
 
         
     
-            var tile_layer_aaf9d38a5220ac7e21963c492d09fd5d = L.tileLayer(
-                "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
+            var tile_layer_724405baf4cfe5936b5b9f6299552c30 = L.tileLayer(
+                "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}\u0026key=YOUR-API-KEY",
                 {"attribution": "Google", "detectRetina": false, "maxNativeZoom": 22, "maxZoom": 22, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            map_c347bcde4609c1ed2284dcb7674668a2.fitBounds(
+                tile_layer_724405baf4cfe5936b5b9f6299552c30.addTo(map_86cb31976c537575a74a2abc4f304e86);
+    
+            map_86cb31976c537575a74a2abc4f304e86.fitBounds(
                 [[59.910155, 10.811134], [59.910155, 10.811134]],
                 {"maxZoom": 13}
             );
         
     
-            var macro_element_fb4c56136a86e09bd32ebe58a43a7351 = L.tileLayer.wms(
+            var macro_element_73d151978c8c1127357c1baa4187b0cb = L.tileLayer.wms(
                 "https://geo.ngu.no/mapserver/LosmasserWMS?request=GetCapabilities\u0026service=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "Losmasse_flate", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var macro_element_64d5d2b0ea27f0cae2ff051e04d4aca4 = L.tileLayer.wms(
+                macro_element_73d151978c8c1127357c1baa4187b0cb.addTo(map_86cb31976c537575a74a2abc4f304e86);
+    
+            var macro_element_71d78c4b435883eaeca5aed05ae86b46 = L.tileLayer.wms(
                 "https://geo.ngu.no/mapserver/MarinGrenseWMS4?REQUEST=GetCapabilities\u0026SERVICE=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "Marin_grense_linjer", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var macro_element_1e41980c7e9f9dca6140b847095c2a07 = L.tileLayer.wms(
+                macro_element_71d78c4b435883eaeca5aed05ae86b46.addTo(map_86cb31976c537575a74a2abc4f304e86);
+    
+            var macro_element_0310021bc0e758dcfc3653d641426a2f = L.tileLayer.wms(
                 "https://geo.ngu.no/mapserver/GranadaWMS5?request=GetCapabilities\u0026service=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "Energibronn", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var macro_element_52e60b5b4e22479bff240eeca625a4bf = L.tileLayer.wms(
+                macro_element_0310021bc0e758dcfc3653d641426a2f.addTo(map_86cb31976c537575a74a2abc4f304e86);
+    
+            var macro_element_c2cdd3923b55fad39bea7660601df574 = L.tileLayer.wms(
                 "https://geo.ngu.no/geoserver/nadag/ows?request=GetCapabilities\u0026service=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "GBU_metode", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var macro_element_96acd839562735a51971ea7ce9de97e6 = L.tileLayer.wms(
+                macro_element_c2cdd3923b55fad39bea7660601df574.addTo(map_86cb31976c537575a74a2abc4f304e86);
+    
+            var macro_element_f6b7dc15242caf006ec57e29e3242693 = L.tileLayer.wms(
                 "https://geo.ngu.no/mapserver/BerggrunnWMS3?request=GetCapabilities\u0026SERVICE=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "Berggrunn_lokal_hovedbergarter", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var macro_element_65f4fc5c5135a9d9cc6b422ea5a25ff0 = L.tileLayer.wms(
+            var macro_element_abf038b629b3a3cc99667354699356b7 = L.tileLayer.wms(
                 "https://geo.ngu.no/mapserver/BerggrunnWMS3?request=GetCapabilities\u0026SERVICE=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "Berggrunn_regional_hovedbergarter", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var macro_element_a3c40c34946060166b7bde22e7633c27 = L.tileLayer.wms(
+            var macro_element_208216e8740ada4d25d305d41e5228f0 = L.tileLayer.wms(
                 "https://geo.ngu.no/mapserver/BerggrunnWMS3?request=GetCapabilities\u0026SERVICE=WMS",
                 {"attribution": " ", "format": "image/png", "layers": "Berggrunn_nasjonal_hovedbergarter", "styles": "", "transparent": true, "version": "1.1.1"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
+            );
         
     
-            var layer_control_905dd9053149a910fe16c5430e940026 = {
+            var layer_control_955c36638ebd58034d0df97aee937855_layers = {
                 base_layers : {
-                    "openstreetmap" : tile_layer_37d911c9fcb32435310df31d63e10ddc,
+                    "openstreetmap" : tile_layer_167ddead2a6c9deb2d606608ef3636f3,
                 },
                 overlays :  {
-                    "Google Maps" : tile_layer_aaf9d38a5220ac7e21963c492d09fd5d,
-                    "L\u00f8smasser" : macro_element_fb4c56136a86e09bd32ebe58a43a7351,
-                    "Marin grense" : macro_element_64d5d2b0ea27f0cae2ff051e04d4aca4,
-                    "Energibr\u00f8nner" : macro_element_1e41980c7e9f9dca6140b847095c2a07,
-                    "Grunnunders\u00f8kelser" : macro_element_52e60b5b4e22479bff240eeca625a4bf,
-                    "Lokal berggrunn" : macro_element_96acd839562735a51971ea7ce9de97e6,
-                    "Regional berggrunn" : macro_element_65f4fc5c5135a9d9cc6b422ea5a25ff0,
-                    "Nasjonal berggrunn" : macro_element_a3c40c34946060166b7bde22e7633c27,
+                    "Google Maps" : tile_layer_724405baf4cfe5936b5b9f6299552c30,
+                    "L\u00f8smasser" : macro_element_73d151978c8c1127357c1baa4187b0cb,
+                    "Marin grense" : macro_element_71d78c4b435883eaeca5aed05ae86b46,
+                    "Energibr\u00f8nner" : macro_element_0310021bc0e758dcfc3653d641426a2f,
+                    "Grunnunders\u00f8kelser" : macro_element_c2cdd3923b55fad39bea7660601df574,
+                    "Lokal berggrunn" : macro_element_f6b7dc15242caf006ec57e29e3242693,
+                    "Regional berggrunn" : macro_element_abf038b629b3a3cc99667354699356b7,
+                    "Nasjonal berggrunn" : macro_element_208216e8740ada4d25d305d41e5228f0,
                 },
             };
-            L.control.layers(
-                layer_control_905dd9053149a910fe16c5430e940026.base_layers,
-                layer_control_905dd9053149a910fe16c5430e940026.overlays,
+            let layer_control_955c36638ebd58034d0df97aee937855 = L.control.layers(
+                layer_control_955c36638ebd58034d0df97aee937855_layers.base_layers,
+                layer_control_955c36638ebd58034d0df97aee937855_layers.overlays,
                 {"autoZIndex": true, "collapsed": true, "position": "topright"}
-            ).addTo(map_c347bcde4609c1ed2284dcb7674668a2);
-            macro_element_96acd839562735a51971ea7ce9de97e6.remove();
-            macro_element_65f4fc5c5135a9d9cc6b422ea5a25ff0.remove();
-            macro_element_a3c40c34946060166b7bde22e7633c27.remove();
+            ).addTo(map_86cb31976c537575a74a2abc4f304e86);
+
         
 </script>
 </html>

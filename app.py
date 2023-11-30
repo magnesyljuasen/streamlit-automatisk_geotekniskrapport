@@ -92,6 +92,8 @@ def main():
         )
     m.to_streamlit(700, 400)
     m.to_html("kart.html")
+
+    bilde = st.file_uploader("Last opp bilde")
     #hti = Html2Image()
     #hti.screenshot(html_file='kart.html', save_as='kart.png', size=(500, 500))
     #--
@@ -144,6 +146,8 @@ def main():
     document.add_paragraph(report_text_1)
 
     document.add_picture("kart.png")
+    if bilde:
+        document.add_picture(bilde)
     #--
     st.markdown("---")
     bio = io.BytesIO()
